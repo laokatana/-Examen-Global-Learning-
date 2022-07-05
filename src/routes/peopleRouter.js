@@ -3,7 +3,7 @@ const peopleController = require("../controllers/peopleController");
 const validator = require("express-joi-validation").createValidator({});
 const bodySchema = require("../validations/peopleBodyValidator");
 const querySchema = require("../validations/peopleQuery");
-const paramsSchema = require("../validations/peopleQuery");
+const paramsSchema = require("../validations/peopleParams");
 
 const router = (People) => {
   const peopleRouter = express.Router();
@@ -25,7 +25,7 @@ const router = (People) => {
     .route("/people/:id")
     .get(getPeopleById)
     .put(validator.body(bodySchema), putPeopleById)
-    .delete(validator.body(bodySchema), deletePeopleById);
+    .delete(deletePeopleById);
 
   peopleRouter
     .route("/people/username")

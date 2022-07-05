@@ -16,7 +16,7 @@ const AuthorsController = (Author) => {
       const { body } = req;
       const author = await new Author(body);
       await author.save();
-      return res.status(httpStatus.CREATED).json(people);
+      return res.status(httpStatus.CREATED).json(author);
     } catch (err) {
       next(err);
     }
@@ -43,11 +43,10 @@ const AuthorsController = (Author) => {
         },
         {
           $set: {
-            
             authorName: body.authorName,
             books: body.books,
-            birth: body.birth,
-            subject: body.subject
+            publicationDate: body.publicationDate,
+            subject: body.subject,
           },
         }
       );
